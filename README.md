@@ -1,13 +1,12 @@
 # Next.js Boilerplate
 
 - TypeScript
-- Start structure with `_document.tsx`
-- Folder structure in `/src`
-- Roboto font
+- Start Structure with `_document.tsx`
+- Folder Structure in `/src`
+- Roboto Font
 - TailwindCSS with JIT
+- React Icons
 - ESLint
   - Standard
   - Import Sort
   - TailwindCSS Sort
-
-Under construction.
