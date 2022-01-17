@@ -1,12 +1,12 @@
 .main {
-  @apply flex justify-center items-center mx-auto h-screen;
+  @apply flex flex-col justify-center items-center mx-auto h-screen;
 }
 
-.main div {
+.main button {
   @apply flex items-center box-decoration-clone bg-gradient-to-r from-indigo-600 to-pink-500 text-2xl text-white p-8 rounded-full transition duration-300;
 }
 
-.main div:hover {
+.main button:hover {
   @apply shadow-2xl;
 }
 
