@@ -8,10 +8,15 @@ module.exports = {
       fontFamily: {
         sans: ['Roboto', ...defaultTheme.fontFamily.sans]
       },
-      colors: { // https://www.tailwindshades.com/
+      colors: {
+        // https://www.tailwindshades.com/
         primary: {},
         secondary: {},
         tertiary: {}
+      },
+      screens: {
+        xxs: { max: '340px' },
+        xs: { max: '640px' }
       }
     }
   },

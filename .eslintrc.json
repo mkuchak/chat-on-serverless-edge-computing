@@ -37,6 +37,7 @@
       }
     ],
     "tailwindcss/no-arbitrary-value": "off",
-    "tailwindcss/no-contradicting-classname": "error"
+    "tailwindcss/no-contradicting-classname": "error",
+    "prefer-promise-reject-errors": "off"
   }
 }

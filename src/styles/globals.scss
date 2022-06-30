@@ -16,6 +16,7 @@
 
 html,
 body {
+  @apply text-slate-100 bg-slate-900;
   height: 100%;
 }
 
@@ -88,4 +89,26 @@ a {
   text-decoration: none;
   display: flex;
   align-items: center;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #1a2236 #ffffff00;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff00;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #1a2236;
+  border-radius: 32px;
 }

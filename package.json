@@ -1,13 +1,16 @@
 {
-  "name": "nextjs-boilerplate",
+  "name": "chat-on-serverless-edge-computing",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next export",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "consistent-color-generation": "^0.4.0",
+    "emoji-picker-react": "^3.5.1",
     "next": "^12.0.8",
     "react": "17.0.2",
     "react-dom": "17.0.2",

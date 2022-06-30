@@ -1,16 +1,18 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 
+import { ChatRoom } from '../components/ChatRoom'
 import { InputSetting } from '../components/InputSetting'
 import { useChatRoom } from '../contexts/ChatRoomContext'
 
-const Home: NextPage = () => {
-  const { nickname, room, setNickname, setNormalizedRoom } = useChatRoom()
+export default function Room () {
+  const { nickname, setNickname, room, members } = useChatRoom()
 
   return (
     <>
       <Head>
-        <title>Chat</title>
+        <title>
+          #{room} {members.length ? `(${members.join(', ')})` : ''}
+        </title>
         <meta name="description" content="Chat" />
       </Head>
 
@@ -22,16 +24,8 @@ const Home: NextPage = () => {
             onSubmit={setNickname}
           />
         )}
-        {nickname && !room && (
-          <InputSetting
-            title="Entre em uma sala pública"
-            placeholder="Digite o nome da sala"
-            onSubmit={setNormalizedRoom}
-          />
-        )}
+        {nickname && room && <ChatRoom />}
       </main>
     </>
   )
 }
-
-export default Home
