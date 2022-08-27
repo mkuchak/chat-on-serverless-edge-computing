@@ -19,14 +19,20 @@ interface EmojiPickerProps {
 }
 
 export function InputMessage () {
-  const [isEmojiOpen, setIsEmojiOpen] = useState(false)
   const { isReady, sendMessage } = useChatroom()
+  const [isEmojiOpen, setIsEmojiOpen] = useState(false)
   const [message, setMessage] = useState('')
   const messageInput = useRef(null)
 
   useEffect(() => {
     messageInput.current.focus()
   }, [])
+
+  function selectEmoji (emoji: EmojiPickerProps) {
+    setMessage(`${message}${emoji.native}`)
+    setIsEmojiOpen(false)
+    messageInput.current.focus()
+  }
 
   function handleSendMessage (e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -44,15 +50,10 @@ export function InputMessage () {
       )}
     >
       <OutsideClickHandler onOutsideClick={() => setIsEmojiOpen(false)}>
-        <div
-          className={clsx('absolute bottom-16', { hidden: !isEmojiOpen })}
-        >
+        <div className={clsx('absolute bottom-16', { hidden: !isEmojiOpen })}>
           <Picker
             data={data}
-            onEmojiSelect={(emoji: EmojiPickerProps) => {
-              setMessage(`${message}${emoji.native}`)
-              setIsEmojiOpen(false)
-            }}
+            onEmojiSelect={selectEmoji}
             theme="dark"
             maxFrequentRows={1}
             perLine={6}
