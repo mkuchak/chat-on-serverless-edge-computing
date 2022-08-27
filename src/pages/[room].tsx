@@ -1,11 +1,11 @@
 import Head from 'next/head'
 
-import { ChatRoom } from '../components/ChatRoom'
+import { Chatroom } from '../components/Chatroom'
 import { InputSetting } from '../components/InputSetting'
-import { useChatRoom } from '../contexts/ChatRoomContext'
+import { useChatroom } from '../contexts/ChatroomContext'
 
 export default function Room () {
-  const { nickname, setNickname, room, members } = useChatRoom()
+  const { nickname, setNickname, room, members } = useChatroom()
 
   return (
     <>
@@ -19,12 +19,12 @@ export default function Room () {
       <main className="container mx-auto h-screen">
         {!nickname && (
           <InputSetting
-            title="Escolha um apelido para prosseguir"
-            placeholder="Digite seu nome"
+            title="Choose a nickname to continue"
+            placeholder="Your nickname"
             onSubmit={setNickname}
           />
         )}
-        {nickname && room && <ChatRoom />}
+        {nickname && room && <Chatroom />}
       </main>
     </>
   )

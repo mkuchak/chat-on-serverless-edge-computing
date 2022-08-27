@@ -2,10 +2,10 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { InputSetting } from '../components/InputSetting'
-import { useChatRoom } from '../contexts/ChatRoomContext'
+import { useChatroom } from '../contexts/ChatroomContext'
 
 const Home: NextPage = () => {
-  const { nickname, room, setNickname, setNormalizedRoom } = useChatRoom()
+  const { nickname, room, setNickname, setNormalizedRoom } = useChatroom()
 
   return (
     <>
@@ -17,15 +17,15 @@ const Home: NextPage = () => {
       <main className="container mx-auto h-screen">
         {!nickname && (
           <InputSetting
-            title="Escolha um apelido para prosseguir"
-            placeholder="Digite seu nome"
+            title="Choose a nickname to continue"
+            placeholder="Your nickname"
             onSubmit={setNickname}
           />
         )}
         {nickname && !room && (
           <InputSetting
-            title="Entre em uma sala pública"
-            placeholder="Digite o nome da sala"
+            title="Enter a public room"
+            placeholder="Room name"
             onSubmit={setNormalizedRoom}
           />
         )}

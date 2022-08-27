@@ -4,7 +4,12 @@
     "es2021": true,
     "node": true
   },
-  "extends": ["next/core-web-vitals", "plugin:react/recommended", "standard"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:react/recommended",
+    "standard",
+    "plugin:tailwindcss/recommended"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -16,8 +21,8 @@
   "plugins": [
     "react",
     "@typescript-eslint",
-    "tailwindcss",
-    "simple-import-sort"
+    "simple-import-sort",
+    "tailwindcss"
   ],
   "rules": {
     "indent": [2, 2],
@@ -26,18 +31,24 @@
     "semi": ["error", "never"],
     "@typescript-eslint/semi": "off",
     "import/no-anonymous-default-export": "off",
-    "simple-import-sort/exports": "error",
-    "simple-import-sort/imports": "error",
     "react/react-in-jsx-scope": "off",
-    "tailwindcss/no-custom-classname": "off",
+    "prefer-promise-reject-errors": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "simple-import-sort/exports": "warn",
+    "simple-import-sort/imports": "warn",
+    "camelcase": "off",
+    "no-useless-constructor": "off",
+    "comma-dangle": ["error", "always-multiline"],
+    "no-undef": "off",
     "tailwindcss/classnames-order": [
-      2,
-      {
-        "callees": ["classNames", "apply"]
-      }
+      "warn",
+      { "callees": ["classNames", "apply", "tw", "cx", "clsx", "ctl"] }
     ],
+    "tailwindcss/enforces-negative-arbitrary-values": "warn",
+    "tailwindcss/enforces-shorthand": "warn",
     "tailwindcss/no-arbitrary-value": "off",
-    "tailwindcss/no-contradicting-classname": "error",
-    "prefer-promise-reject-errors": "off"
+    "tailwindcss/no-custom-classname": "off",
+    "tailwindcss/no-contradicting-classname": "error"
   }
 }

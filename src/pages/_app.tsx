@@ -2,13 +2,13 @@ import '../styles/globals.scss'
 
 import type { AppProps } from 'next/app'
 
-import { ChatRoomProvider } from '../contexts/ChatRoomContext'
+import { ChatroomProvider } from '../contexts/ChatroomContext'
 
 function MyApp ({ Component, pageProps }: AppProps) {
   return (
-    <ChatRoomProvider>
+    <ChatroomProvider>
       <Component {...pageProps} />
-    </ChatRoomProvider>
+    </ChatroomProvider>
   )
 }
 

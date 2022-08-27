@@ -5,7 +5,7 @@ import {
   useContext,
   useEffect,
   useRef,
-  useState
+  useState,
 } from 'react'
 
 export type Message = {
@@ -15,7 +15,7 @@ export type Message = {
   isAlert?: boolean;
 };
 
-type ChatRoomContextProps = {
+type ChatroomContextProps = {
   nickname: string;
   setNickname: (nickname: string) => void;
   room: string;
@@ -27,13 +27,13 @@ type ChatRoomContextProps = {
   isReady: boolean;
 };
 
-type ChatRoomProviderProps = {
+type ChatroomProviderProps = {
   children: ReactNode;
 };
 
-export const ChatRoomContext = createContext({} as ChatRoomContextProps)
+export const ChatroomContext = createContext({} as ChatroomContextProps)
 
-export function ChatRoomProvider ({ children }: ChatRoomProviderProps) {
+export function ChatroomProvider ({ children }: ChatroomProviderProps) {
   const { room: roomFromQuery } = useRouter().query
 
   const [nickname, setNickname] = useState('')
@@ -44,52 +44,10 @@ export function ChatRoomProvider ({ children }: ChatRoomProviderProps) {
   const [isReady, setIsReady] = useState(false)
   const [isConnected, setIsConnected] = useState(false)
 
-  const hostname = 'chat.kuch.workers.dev'
-  // const hostname = 'edge-chat-demo.cloudflareworkers.com'
+  // const hostname = 'chat.kuch.workers.dev'
+  const hostname = 'edge-chat-demo.cloudflareworkers.com'
   const ws = useRef<WebSocket | null>(null)
   const lastSeenTimestamp = useRef<number>(0)
-
-  useEffect(() => {
-    if (!nickname || !room || isConnected) return
-
-    ws.current = new WebSocket(
-      'wss://' + hostname + '/api/room/' + room + '/websocket'
-    )
-
-    ws.current.addEventListener('open', (event) => {
-      ws.current.send(JSON.stringify({ name: nickname }))
-      setIsConnected(true)
-    })
-
-    ws.current.addEventListener('message', (event) => {
-      const data = JSON.parse(event.data)
-
-      if (data.joined) {
-        addMember(data.joined)
-      } else if (data.quit) {
-        removeMember(data.quit)
-      } else if (data.ready) {
-        addAlertMessage(
-          `Bem-vindo(a) a sala #${room}. <br /> Diga olá a todos, ${nickname}!`
-        )
-        setIsReady(true)
-      } else {
-        addMessage(data)
-      }
-    })
-
-    ws.current.addEventListener('close', (event) => {
-      console.log('WebSocket closed, reconnecting:', event.code, event.reason)
-      setMembers([])
-      setIsConnected(false)
-    })
-
-    ws.current.addEventListener('error', (event) => {
-      console.log('WebSocket error, reconnecting:', event)
-      setMembers([])
-      setIsConnected(false)
-    })
-  }, [isConnected, nickname, room])
 
   function sendMessage (message: string) {
     if (!ws.current) return
@@ -123,7 +81,7 @@ export function ChatRoomProvider ({ children }: ChatRoomProviderProps) {
     addMessage({
       isAlert: true,
       timestamp: new Date().getTime(),
-      message
+      message,
     })
   }
 
@@ -155,9 +113,56 @@ export function ChatRoomProvider ({ children }: ChatRoomProviderProps) {
           return char
         })
         .join('')
-        .replace(/[^a-zA-Z0-9]/g, '')
+        .replace(/[^a-zA-Z0-9]/g, ''),
     )
   }
+
+  useEffect(() => {
+    if (!nickname || !room || isConnected) return
+
+    ws.current = new WebSocket(
+      'wss://' + hostname + '/api/room/' + room + '/websocket',
+    )
+
+    ws.current.addEventListener('open', (event) => {
+      ws.current.send(JSON.stringify({ name: nickname }))
+      setIsConnected(true)
+    })
+
+    ws.current.addEventListener('message', (event) => {
+      const data = JSON.parse(event.data)
+
+      if (data.joined) {
+        addMember(data.joined)
+      } else if (data.quit) {
+        removeMember(data.quit)
+      } else if (data.ready) {
+        addAlertMessage(
+          `Welcome to #${room} room. <br /> Say hello to everyone, ${nickname}!`,
+        )
+        setIsReady(true)
+      } else {
+        addMessage(data)
+      }
+    })
+
+    ws.current.addEventListener('close', (event) => {
+      console.log('WebSocket closed, reconnecting:', event.code, event.reason)
+      setMembers([])
+      setIsConnected(false)
+    })
+
+    ws.current.addEventListener('error', (event) => {
+      console.log('WebSocket error, reconnecting:', event)
+      setMembers([])
+      setIsConnected(false)
+    })
+    /**
+     * @warning: remove addAlertMessage from dependencies because there might be
+     * an attempt to send a message without a stable ws connection
+     */
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isConnected, nickname, room])
 
   useEffect(() => {
     if (!room && Router.route !== '/') {
@@ -169,7 +174,7 @@ export function ChatRoomProvider ({ children }: ChatRoomProviderProps) {
   }, [room, roomFromQuery])
 
   return (
-    <ChatRoomContext.Provider
+    <ChatroomContext.Provider
       value={{
         nickname,
         setNickname,
@@ -179,12 +184,12 @@ export function ChatRoomProvider ({ children }: ChatRoomProviderProps) {
         messages,
         members,
         addMember,
-        isReady
+        isReady,
       }}
     >
       {children}
-    </ChatRoomContext.Provider>
+    </ChatroomContext.Provider>
   )
 }
 
-export const useChatRoom = () => useContext(ChatRoomContext)
+export const useChatroom = () => useContext(ChatroomContext)
