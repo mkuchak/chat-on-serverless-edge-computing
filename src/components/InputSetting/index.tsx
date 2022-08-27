@@ -1,5 +1,7 @@
 import { FormEvent, useEffect, useRef } from 'react'
 
+import { IconNextStep } from '../Icons/IconNextStep'
+
 type InputSettingProps = {
   title: string;
   placeholder: string;
@@ -45,22 +47,7 @@ export function InputSetting ({
             maxLength={maxLength}
           />
           <button type="submit" className="h-8 w-8 fill-slate-500 pr-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              x="0px"
-              y="0px"
-              width="32px"
-              height="32px"
-              viewBox="0 0 52 52"
-              enableBackground="new 0 0 52 52"
-              xmlSpace="preserve"
-            >
-              <path
-                d="M3.4,29h33.2c0.9,0,1.3,1.1,0.7,1.7l-9.6,9.6c-0.6,0.6-0.6,1.5,0,2.1l2.2,2.2c0.6,0.6,1.5,0.6,2.1,0L49.5,27
- c0.6-0.6,0.6-1.5,0-2.1L32,7.4c-0.6-0.6-1.5-0.6-2.1,0l-2.1,2.1c-0.6,0.6-0.6,1.5,0,2.1l9.6,9.6c0.6,0.7,0.2,1.8-0.7,1.8H3.5
- C2.7,23,2,23.6,2,24.4v3C2,28.2,2.6,29,3.4,29z"
-              />
-            </svg>
+            <IconNextStep />
           </button>
         </label>
       </div>
