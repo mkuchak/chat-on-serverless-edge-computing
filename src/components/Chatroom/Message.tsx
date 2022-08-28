@@ -61,7 +61,7 @@ export const Message = memo(
               {new Date(timestamp).toLocaleTimeString('pt-BR', {
                 hour: '2-digit',
                 minute: '2-digit',
-                timeZone: 'America/Sao_Paulo',
+                timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
               })}
             </div>
           </div>

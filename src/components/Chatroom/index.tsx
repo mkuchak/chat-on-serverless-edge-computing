@@ -15,7 +15,7 @@ export function Chatroom () {
   const { room, messages, members, isReady } = useChatroom()
 
   useEffect(() => {
-    chatBox.current.scrollBy(0, 1e8)
+    chatBox.current?.scrollBy(0, 1e8)
   }, [messages, isReady])
 
   return (
