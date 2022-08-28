@@ -44,8 +44,6 @@ export function ChatroomProvider ({ children }: ChatroomProviderProps) {
   const [isReady, setIsReady] = useState(false)
   const [isConnected, setIsConnected] = useState(false)
 
-  // const hostname = 'chat.kuch.workers.dev'
-  const hostname = 'edge-chat-demo.cloudflareworkers.com'
   const ws = useRef<WebSocket | null>(null)
   const lastSeenTimestamp = useRef<number>(0)
 
@@ -121,7 +119,7 @@ export function ChatroomProvider ({ children }: ChatroomProviderProps) {
     if (!nickname || !room || isConnected) return
 
     ws.current = new WebSocket(
-      'wss://' + hostname + '/api/room/' + room + '/websocket',
+      `wss://${process.env.NEXT_PUBLIC_HOSTNAME}/api/room/${room}/websocket`,
     )
 
     ws.current.addEventListener('open', (event) => {
@@ -161,7 +159,7 @@ export function ChatroomProvider ({ children }: ChatroomProviderProps) {
      * @warning: remove addAlertMessage from dependencies because there might be
      * an attempt to send a message without a stable ws connection
      */
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isConnected, nickname, room])
 
   useEffect(() => {
