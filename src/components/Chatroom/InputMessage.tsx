@@ -55,8 +55,8 @@ export function InputMessage () {
             data={data}
             onEmojiSelect={selectEmoji}
             theme="dark"
-            maxFrequentRows={1}
-            perLine={6}
+            maxFrequentRows={2}
+            perLine={7}
             previewPosition="none"
             navPosition="bottom"
             searchPosition="none"
