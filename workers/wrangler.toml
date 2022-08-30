@@ -1,0 +1,15 @@
+name = "chat"
+workers_dev = true
+compatibility_date = "2021-11-08"
+main = "./src/chat.mjs"
+
+# account_id = ""
+
+[durable_objects]
+bindings = [
+  { name = "rooms", class_name = "ChatRoom" },
+]
+
+[[migrations]]
+tag = "v1"
+new_classes = ["ChatRoom"]
