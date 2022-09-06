@@ -5,7 +5,10 @@ import { InputSetting } from '../components/InputSetting'
 import { useChatroom } from '../contexts/ChatroomContext'
 
 export default function Room () {
-  const { nickname, setNickname, room, members } = useChatroom()
+  const {
+    chatroom: { nickname, room, members },
+    setNickname,
+  } = useChatroom()
 
   return (
     <>

@@ -19,7 +19,10 @@ interface EmojiPickerProps {
 }
 
 export function InputMessage () {
-  const { isReady, sendMessage } = useChatroom()
+  const {
+    chatroom: { isReady },
+    sendMessage,
+  } = useChatroom()
   const [isEmojiOpen, setIsEmojiOpen] = useState(false)
   const [message, setMessage] = useState('')
   const messageInput = useRef(null)

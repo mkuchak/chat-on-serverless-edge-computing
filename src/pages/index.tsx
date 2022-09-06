@@ -5,7 +5,11 @@ import { InputSetting } from '../components/InputSetting'
 import { useChatroom } from '../contexts/ChatroomContext'
 
 const Home: NextPage = () => {
-  const { nickname, room, setNickname, setNormalizedRoom } = useChatroom()
+  const {
+    chatroom: { nickname, room },
+    setNickname,
+    setRoom,
+  } = useChatroom()
 
   return (
     <>
@@ -26,7 +30,7 @@ const Home: NextPage = () => {
           <InputSetting
             title="Enter a public room"
             placeholder="Room name"
-            onSubmit={setNormalizedRoom}
+            onSubmit={setRoom}
           />
         )}
       </main>

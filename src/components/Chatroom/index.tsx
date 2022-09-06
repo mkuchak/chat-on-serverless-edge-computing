@@ -12,8 +12,10 @@ import { InputMessage } from './InputMessage'
 import { Message } from './Message'
 
 export function Chatroom () {
+  const {
+    chatroom: { room, messages, members, isReady },
+  } = useChatroom()
   const chatBox = useRef<HTMLDivElement | null>(null)
-  const { room, messages, members, isReady } = useChatroom()
   const { shouldScrollToBottom } = useShouldScrollToBottom(chatBox)
 
   useEffect(() => {
