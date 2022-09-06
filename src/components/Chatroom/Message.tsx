@@ -2,12 +2,11 @@ import 'animate.css'
 
 import clsx from 'clsx'
 import colorFromString from 'consistent-color-generation'
-import { memo, ReactNode } from 'react'
+import { memo, PropsWithChildren } from 'react'
 
 type MessageProps = {
   name?: string;
   timestamp?: number;
-  children: ReactNode;
   isAlert?: boolean;
 };
 
@@ -15,9 +14,9 @@ export const Message = memo(
   ({
     name = 'Anonymous',
     timestamp = new Date().getTime() / 1000,
-    children: message,
     isAlert = false,
-  }: MessageProps) => {
+    children: message,
+  }: PropsWithChildren<MessageProps>) => {
     if (!message) return
 
     if (isAlert) {
